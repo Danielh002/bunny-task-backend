@@ -1,8 +1,11 @@
-let User = class {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
-  }
-};
+var mongoose = require('mongoose');
 
-module.exports = User;
+const UserSchema = new mongoose.Schema(
+	{
+    _id: mongoose.Schema.Types.ObjectId,
+    name: { type: String, required: true },
+	},
+	{ collection: 'completed' }
+)
+
+module.exports = mongoose.model('User', UserSchema)

@@ -1,5 +1,4 @@
 var userListFunction = function (req, res) {
-
     let userList = [
         {
             "id": 1,
