@@ -22,6 +22,6 @@ module.exports = function (app) {
         .delete(controller.deleteUserTask);
 
 
-    app.route('/usersList')
-        .get(controller.getUserList);
+    app.route('/getUsersAndTasks')
+        .get(controller.getUsersAndTask);
 };
