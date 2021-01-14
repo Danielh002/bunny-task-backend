@@ -7,8 +7,12 @@ module.exports = function (app) {
         .get(controller.about);
     app.route('/distance/:zipcode1/:zipcode2')
         .get(controller.getDistance);
-    app.route('/addUser')
+    app.route('/user')
         .post(controller.addUser);
+    app.route('/user/:userId')
+        .get(controller.getUserList);
+        app.route('/userTask')
+        .post(controller.addUserTask);
     app.route('/usersList')
         .get(controller.getUserList);
 };

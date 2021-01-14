@@ -1,6 +1,8 @@
 var properties = require('../package.json')
 var userListFunction = require('./controllers/usersListFunction');
-var addUserFunction = require('./controllers/addUserFunction');
+var addUserFunction = require('./controllers/user/addUserFunction');
+var addUserTaskFunction = require('./controllers/userTask/addUserTaskFunction');
+
 
 var controllers = {
     about: function (req, res) {
@@ -14,7 +16,10 @@ var controllers = {
         res.json("Hola");
     },
     addUser: (req, res) => addUserFunction(req, res),
-    getUserList: (req, res) => userListFunction(req, res)
+    deleteUser: (req, res) => deleteUser(req, res),
+    getUserList: (req, res) => userListFunction(req, res),
+    addUserTask: (req, res) => addUserTaskFunction(req, res),
+
 };
 
 module.exports = controllers;
