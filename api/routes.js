@@ -9,6 +9,8 @@ module.exports = function (app) {
     app.route('/user')
         .post(controller.addUser);
     app.route('/user/:userId')
+        .patch(controller.updateUser);
+    app.route('/user/:userId')
         .delete(controller.deleteUser);
 
 
