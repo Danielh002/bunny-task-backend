@@ -8,6 +8,7 @@ var updateUserFunction = require('./controllers/user/updateUserFunction');
 
 var addUserTaskFunction = require('./controllers/userTask/addUserTaskFunction');
 var deleteUserTaskFunction = require('./controllers/userTask/deleteUserTaskFunction');
+var updateUserTaskFunction = require('./controllers/userTask/updateUserTaskFunction');
 
 
 var controllers = {
@@ -26,6 +27,7 @@ var controllers = {
     
     addUserTask: (req, res) => addUserTaskFunction(req, res),
     deleteUserTask: (req, res) => deleteUserTaskFunction(req, res),
+    updateUserTask: (req, res) => updateUserTaskFunction(req, res),
 
     getUserList: (req, res) => userListFunction(req, res),
 };

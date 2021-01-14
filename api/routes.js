@@ -17,7 +17,10 @@ module.exports = function (app) {
     app.route('/userTask')
         .post(controller.addUserTask);
     app.route('/userTask/:userTaskId')
+        .patch(controller.updateUserTask);
+    app.route('/userTask/:userTaskId')
         .delete(controller.deleteUserTask);
+
 
     app.route('/usersList')
         .get(controller.getUserList);
