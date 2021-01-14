@@ -2,11 +2,12 @@ var User = require('../../models/user');
 
 var deleteUser = function (req, res) {
     const userId = req.params.userId
-    User.remove({ _id: userId }).exec()
+    if( userId ){
+        User.remove({ _id: userId }).exec()
         .then(result => {
             console.log(result);  
             res.status(200).json({
-                message: 'Delete user',
+                message: 'Deleted user',
                 result: result
             })
         }).catch(error => {
@@ -15,6 +16,13 @@ var deleteUser = function (req, res) {
                 error: error
             })
         })
+    }
+    else{
+        res.status(500).json({
+            message: 'Error deleting user',
+            error: 'request param not found'
+        })
+    }
 }
 
 module.exports = deleteUser;
