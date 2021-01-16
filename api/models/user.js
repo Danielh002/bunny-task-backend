@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-const SETTINGS = require('../settings')
 
 const UserSchema = new mongoose.Schema(
 	{
@@ -9,4 +8,4 @@ const UserSchema = new mongoose.Schema(
 	{ collection: 'user'}
 )
 
-module.exports = mongoose.model('User', UserSchema);
+  	module.exports = mongoose.model('User', UserSchema);

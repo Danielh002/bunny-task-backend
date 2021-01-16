@@ -15,24 +15,41 @@ const connectionParams = {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header('Access-Control-Allow-Methods', 'POST, GET, DELETE, OPTIONS, PATCH');
     next();
 });
 
-
-
 routes(app);
-app.listen(port, function() {
-   console.log('Server started on port: ' + port);
+app.listen(port, function () {
+    console.log('Server started on port: ' + port);
 });
 
-mongoose.connect(mongooseUri, connectionParams)
-    .then(() => {
-        console.log('Connected to database ')
-    })
-    .catch((err) => {
-        console.error(`Error connecting to the database. \n${err}`);
-})
+console.log("process.env.NODE_ENV", process.env.NODE_ENV)
+if (process.env.NODE_ENV == 'test') {
+    const Mockgoose = require('mockgoose').Mockgoose;
+    const mockgoose = new Mockgoose(mongoose);
+    mockgoose.prepareStorage()
+        .then(() => {
+            mongoose.connect('TEST', connectionParams)
+            .then(() => {
+                console.log('Connected to Mock database ')
+            })
+            .catch((err) => {
+                console.error(`Error connecting to the Mock database. \n${err}`);
+            })
+        })
+}
+else {
+    mongoose.connect(mongooseUri, connectionParams)
+        .then(() => {
+            console.log('Connected to database ')
+        })
+        .catch((err) => {
+            console.error(`Error connecting to the database. \n${err}`);
+        })
+}
+
+module.exports = app
